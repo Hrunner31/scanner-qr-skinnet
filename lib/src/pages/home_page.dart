@@ -80,17 +80,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   _scanQR() async {
+
+    // www.hr.com
+    // geo:4.739134296108123,-74.07185926875003
+
     String futureString = '';
-    try {
-      futureString = await BarcodeScanner.scan();
-    } catch (e) {
-      futureString = e.toString();
-    }
+    // try {
+    //   futureString = await BarcodeScanner.scan();
+    // } catch (e) {
+    //   futureString = e.toString();
+    // }
 
-    print('Future String: $futureString');
+    // print('Future String: $futureString');
 
-    if (futureString != null ) {
-      print('Tenemos información');
-    }
+    // if (futureString != null ) {
+    //   print('Tenemos información');
+    // }
   }
 }
