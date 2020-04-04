@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 
+import 'package:scanner_qr_skinnet/src/pages/home_page.dart';
+
+void main() => runApp(ScannerQR());
+
 class ScannerQR extends StatelessWidget {
   const ScannerQR({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Container(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'CodeQR',
+      initialRoute: 'home',
+      routes: {
+        'home': (BuildContext context) => HomePage()
+      },
     );
   }
 }
