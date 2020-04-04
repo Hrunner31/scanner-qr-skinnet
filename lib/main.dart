@@ -16,6 +16,9 @@ class ScannerQR extends StatelessWidget {
       routes: {
         'home': (BuildContext context) => HomePage()
       },
+      theme: ThemeData(
+        primaryColor: Color.fromRGBO(249, 185, 0, 1.0)
+      ),
     );
   }
 }
