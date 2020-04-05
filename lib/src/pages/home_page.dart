@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:barcode_scan/barcode_scan.dart';
+// import 'package:barcode_scan/barcode_scan.dart';
 
 import 'package:scanner_qr_skinnet/src/pages/direcciones_page.dart';
 import 'package:scanner_qr_skinnet/src/pages/mapas_page.dart';
+import 'package:scanner_qr_skinnet/src/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -84,17 +85,17 @@ class _HomePageState extends State<HomePage> {
     // www.hr.com
     // geo:4.739134296108123,-74.07185926875003
 
-    String futureString = '';
+    // String futureString = '';
+    String futureString = 'https://www.hr.com';
     // try {
     //   futureString = await BarcodeScanner.scan();
     // } catch (e) {
     //   futureString = e.toString();
     // }
 
-    // print('Future String: $futureString');
-
-    // if (futureString != null ) {
-    //   print('Tenemos información');
-    // }
+    if (futureString != null ) {
+      final scan = ScanModel(valor: futureString);
+      DBProvider.db.nuevoScan(scan);
+    }
   }
 }

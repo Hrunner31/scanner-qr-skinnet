@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:path/path.dart';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:scanner_qr_skinnet/src/models/scan_model.dart';
 import 'package:sqflite/sqflite.dart';
+
+import 'package:scanner_qr_skinnet/src/models/scan_model.dart';
+export 'package:scanner_qr_skinnet/src/models/scan_model.dart';
 
 class DBProvider {
   static Database _database;
@@ -48,7 +50,6 @@ class DBProvider {
       "INSERT INTO Scans (id, tipo, valor) "
       "VALUES ( ${ nuevoScan.id }, '${ nuevoScan.tipo }', '${ nuevoScan.valor }' )"
     );
-
     return res;
   }
 
@@ -90,13 +91,13 @@ class DBProvider {
   }
 
   // Actualizar registros
-  Future<int> updateScan(ScanModel actualizarScan) async {
+  Future<int> updateScan(ScanModel nuevoScan) async {
     final db = await database;
     final res = await db.update(
       'Scans', 
-      actualizarScan.toJson(), 
+      nuevoScan.toJson(), 
       where: 'id = ?',
-      whereArgs: [actualizarScan.id] 
+      whereArgs: [nuevoScan.id] 
     );
     return res;
   }
