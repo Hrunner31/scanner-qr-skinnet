@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:scanner_qr_skinnet/src/providers/db_provider.dart';
+import 'package:scanner_qr_skinnet/src/bloc/scans_bloc.dart';
+import 'package:scanner_qr_skinnet/src/models/scan_model.dart';
 
 class MapasPage extends StatelessWidget {
-  const MapasPage({Key key}) : super(key: key);
+
+  final scansBloc = new ScansBloc();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ScanModel>>(
-      future: DBProvider.db.getTodosScans(),
+    return StreamBuilder<List<ScanModel>>(
+      stream: scansBloc.scansStream,
       builder: (BuildContext context, AsyncSnapshot<List<ScanModel>> snapshot) {
-        if (!snapshot.hasData ) {
+        if (!snapshot.hasData) {
           return Center(child: CircularProgressIndicator());
         }
 
@@ -26,10 +28,10 @@ class MapasPage extends StatelessWidget {
           itemBuilder: (context, i) => Dismissible(
             key: UniqueKey(),
             background: Container(color: Colors.red),
-            onDismissed: (direction) => DBProvider.db.deleteScan(scans[i].id),
+            onDismissed: (direction) => scansBloc.borrarScan(scans[i].id),
             child:  ListTile(
               leading: Icon(Icons.cloud_queue, color: Theme.of(context).primaryColor),
-              title: Text(scans[i].valor ),
+              title: Text('ID: ${scans[i].valor}'),
               subtitle: Text('ID: ${scans[i].id}'),
               trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey)
             )
