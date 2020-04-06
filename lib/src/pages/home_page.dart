@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:scanner_qr_skinnet/src/bloc/scans_bloc.dart';
 import 'package:scanner_qr_skinnet/src/models/scan_model.dart';
@@ -6,6 +8,7 @@ import 'package:scanner_qr_skinnet/src/models/scan_model.dart';
 
 import 'package:scanner_qr_skinnet/src/pages/direcciones_page.dart';
 import 'package:scanner_qr_skinnet/src/pages/mapas_page.dart';
+import 'package:scanner_qr_skinnet/src/utils/utils.dart' as utils;
 
 class HomePage extends StatefulWidget {
 
@@ -27,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.delete_forever), 
-            onPressed: () {}
+            onPressed: scansBloc.borrarScanTodos,
           )
         ],
       ),
@@ -99,7 +102,21 @@ class _HomePageState extends State<HomePage> {
     if (futureString != null ) {
       final scan = ScanModel(valor: futureString);
       scansBloc.agregarScan(scan);
-      // DBProvider.db.nuevoScan(scan);
+
+      final scan2 = ScanModel(valor: 'geo:4.739134296108123,-74.07185926875003');
+      scansBloc.agregarScan(scan2);
+
+      if (Platform.isIOS) {
+        Future.delayed(Duration(milliseconds: 750), () {
+          utils.abrirScan(scan);
+        });
+      } else {
+        utils.abrirScan(scan);
+      }
+
     }
+
+    
+      
   }
 }

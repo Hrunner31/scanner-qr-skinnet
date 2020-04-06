@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:scanner_qr_skinnet/src/bloc/scans_bloc.dart';
 import 'package:scanner_qr_skinnet/src/models/scan_model.dart';
 
+import 'package:scanner_qr_skinnet/src/utils/utils.dart' as utils;
+
+
 class MapasPage extends StatelessWidget {
 
   final scansBloc = new ScansBloc();
@@ -33,7 +36,8 @@ class MapasPage extends StatelessWidget {
               leading: Icon(Icons.cloud_queue, color: Theme.of(context).primaryColor),
               title: Text('ID: ${scans[i].valor}'),
               subtitle: Text('ID: ${scans[i].id}'),
-              trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey)
+              trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
+              onTap: () => utils.abrirScan(scans[i]),
             )
           )
         );
