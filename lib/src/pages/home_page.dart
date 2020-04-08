@@ -81,12 +81,12 @@ class _HomePageState extends State<HomePage> {
       child: Icon(
         Icons.filter_center_focus
       ),
-      onPressed: _scanQR,
+      onPressed: () => _scanQR(context),
       backgroundColor: Theme.of(context).primaryColor,
     );
   }
 
-  _scanQR() async {
+  _scanQR(BuildContext context) async {
 
     // www.hr.com
     // geo:4.739134296108123,-74.07185926875003
@@ -108,15 +108,12 @@ class _HomePageState extends State<HomePage> {
 
       if (Platform.isIOS) {
         Future.delayed(Duration(milliseconds: 750), () {
-          utils.abrirScan(scan);
+          utils.abrirScan(context, scan);
         });
       } else {
-        utils.abrirScan(scan);
+        utils.abrirScan(context, scan);
       }
 
     }
-
-    
-      
   }
 }
