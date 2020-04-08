@@ -15,5 +15,4 @@ abrirScan(BuildContext context, ScanModel scan ) async {
   } else {
     Navigator.pushNamed(context, 'mapa', arguments: scan);
   }
-
 }

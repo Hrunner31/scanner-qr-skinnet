@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_map/flutter_map.dart';
+
 import 'package:scanner_qr_skinnet/src/models/scan_model.dart';
 
 class MapaPage extends StatefulWidget {
-
   @override
   _MapaPageState createState() => _MapaPageState();
 }
@@ -41,7 +42,7 @@ class _MapaPageState extends State<MapaPage> {
       mapController: mapaCtrl,
       options: MapOptions(
         center: scan.getLatLng(),
-        zoom: 10
+        zoom: 15
       ),
       layers: [
         _crearMapa(),

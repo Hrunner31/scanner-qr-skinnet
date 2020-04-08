@@ -29,7 +29,7 @@ class ScanModel {
     "valor" : valor,
   };
 
-  getLatLng() {
+  LatLng getLatLng() {
     final lalo = valor.substring(4).split(',');
     final lat = double.parse(lalo[0]);
     final lng = double.parse(lalo[1]);
